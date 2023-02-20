@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+      apiKey: "AIzaSyDcixYp48jOM92fKefydjNtNsNK_D7TD7U",
+      appId: "1:976750850265:android:c88519f31d3f74bbf30ec8",
+      messagingSenderId: "976750850265",
+      projectId: "sportmate-82784",
+    ),
+  );
+
   runApp(const MyApp());
 }
 

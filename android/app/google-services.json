@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "976750850265",
+    "project_id": "sportmate-82784",
+    "storage_bucket": "sportmate-82784.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:976750850265:android:c88519f31d3f74bbf30ec8",
+        "android_client_info": {
+          "package_name": "com.sportmate.sportmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "976750850265-eaitf8a3t1ebrgd94ag35rvift0b0iar.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcixYp48jOM92fKefydjNtNsNK_D7TD7U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "976750850265-eaitf8a3t1ebrgd94ag35rvift0b0iar.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
