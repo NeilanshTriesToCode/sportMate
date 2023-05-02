@@ -1,8 +1,11 @@
-// page showing signup form for user
+// Component for the Signup page
+
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Card, Row } from 'react-bootstrap';
+
+import { Link } from 'react-router-dom';
 
 import '../styles/globalStyles.scss';
 
@@ -10,7 +13,7 @@ export const Signup = () => {
   return (
     <Card className='mx-auto mt-4 w-50'>
         <Card.Body>
-            <Row><h2 className='text-left'>Sign Up</h2></Row>
+            <Row><h2 className='text-left'>Create an account</h2></Row>
 
             <Row>
                 <Form>
@@ -44,7 +47,7 @@ export const Signup = () => {
             </Row>
 
             <Row className='mt-4'>
-                <div className='text-center'>Already a user? Log in here.</div>
+                <div className='text-center'>Already a member? <Link to="/login">Log in</Link></div>
             </Row>
         </Card.Body>
 
