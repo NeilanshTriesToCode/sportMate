@@ -19,12 +19,12 @@ export const Login = () => {
                 <Form>
                     <Form.Group id='login-email' className='mt-2'>
                         <Form.Label>email</Form.Label>
-                        <Form.Control type='email' placeholder='name@email.com' />
+                        <Form.Control required type='email' placeholder='name@email.com' />
                     </Form.Group>
 
                     <Form.Group id='login-password' className='mt-4'>
                         <Form.Label>password</Form.Label>
-                        <Form.Control type='password' placeholder='password' />
+                        <Form.Control required type='password' placeholder='password' />
                     </Form.Group>
 
                     <Button variant='primary' type='submit' className='mt-4'>Login</Button>

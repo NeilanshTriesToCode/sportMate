@@ -1,56 +1,101 @@
 // Component for the Signup page
 
-import React from 'react';
+import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Card, Row } from 'react-bootstrap';
+import { Alert, Card, Row } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
+import { useRef } from 'react';
 
 import '../styles/globalStyles.scss';
 
 export const Signup = () => {
-  return (
-    <Card className='mx-auto mt-4 w-50'>
-        <Card.Body>
-            <Row><h2 className='text-left'>Create an account</h2></Row>
+    // variables for input fields
+    const usernameRef = useRef();
+    const emailRef = useRef();
+    const contactNumRef = useRef();
+    const passwordRef = useRef();
+    const confirmPasswordRef = useRef();
 
-            <Row>
-                <Form>
-                    <Form.Group id='signup-name' className='mt-2'>
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type='text' placeholder='Leo Messi' />
-                    </Form.Group>
+    // state variable for loading
+    const [isLoading, setIsLoading] = useState(false); 
 
-                    <Form.Group id='signup-email' className='mt-4'>
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type='email' placeholder='name@email.com' />
-                    </Form.Group>
+    // state variable to display error message
+    const [errorMsg, setErrorMsg] = useState('');
 
-                    <Form.Group id='signup-phone' className='mt-4'>
-                        <Form.Label>Phone</Form.Label>
-                        <Form.Control type='number' placeholder='contact number' />
-                    </Form.Group>
+    // state variable to show/hide alert
+    const [showAlert, setShowAlert] = useState(false);
 
-                    <Form.Group id='signup-password' className='mt-4'>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type='password' placeholder='password' />
-                    </Form.Group>
+    // function to handle Submit Button click
+    function handleSubmit(event) {
+        // use Bootstrap Form's built-in functions to see if the fields are empty or not
+        const form = event.currentTarget;
 
-                    <Form.Group id='signup-confirm-password' className='mt-4'>
-                        <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control type='password' placeholder='confirm password' />
-                    </Form.Group>
+        // if fields are not entered
+        if(!form.checkValidity()){
+            event.preventDefault();
 
-                    <Button variant='primary' type='submit' className='mt-4'>Sign Up</Button>
-                </Form>
-            </Row>
+            // update associated state variables
+            setErrorMsg("One or more fields are empty.");
+            setShowAlert(true);
 
-            <Row className='mt-4'>
-                <div className='text-center'>Already a member? <Link to="/login">Log in</Link></div>
-            </Row>
-        </Card.Body>
+        }
 
-    </Card>
+        // check if password and confirm-password match
+        if(passwordRef.current.value !== confirmPasswordRef.current.value){
+            event.preventDefault();
+
+            // update associated state variables
+            setErrorMsg("Passwords do not match. Try again.");
+            setShowAlert(true);
+
+        }
+    }
+
+    return (
+        <Card className='mx-auto mt-4 w-50'>
+            <Card.Body>
+                <Row><h2 className='text-left'>Create an account</h2></Row>
+
+                <Row>{showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}</Row>
+
+                <Row>
+                    <Form noValidate validated={errorMsg} onSubmit={handleSubmit}>
+                        <Form.Group id='signup-name' className='mt-2'>
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control required type='text' ref={usernameRef} placeholder='Leo Messi' />
+                        </Form.Group>
+
+                        <Form.Group id='signup-email' className='mt-4'>
+                            <Form.Label>Email</Form.Label>
+                            <Form.Control required type='email' ref={emailRef} placeholder='name@email.com' />
+                        </Form.Group>
+
+                        <Form.Group id='signup-phone' className='mt-4'>
+                            <Form.Label>Phone</Form.Label>
+                            <Form.Control required type='number' ref={contactNumRef} placeholder='contact number' />
+                        </Form.Group>
+
+                        <Form.Group id='signup-password' className='mt-4'>
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control required type='password' ref={passwordRef} placeholder='password' />
+                        </Form.Group>
+
+                        <Form.Group id='signup-confirm-password' className='mt-4'>
+                            <Form.Label>Confirm Password</Form.Label>
+                            <Form.Control required type='password' ref={confirmPasswordRef} placeholder='confirm password' />
+                        </Form.Group>
+
+                        <Button disabled={isLoading}  variant='primary' type='submit' className='mt-4'>Sign Up</Button>
+                    </Form>
+                </Row>
+
+                <Row className='mt-2'>
+                    <div className='text-center'>Already a member? <Link to="/login">Log in</Link></div>
+                </Row>
+            </Card.Body>
+
+        </Card>
   )
 }
