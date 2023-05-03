@@ -3,6 +3,7 @@
 import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 import { Card, Row } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
@@ -10,10 +11,16 @@ import { Link } from 'react-router-dom';
 import '../styles/globalStyles.scss';
 
 export const Login = () => {
+    const logo = require('../assets/png/logo-no-background.png');
+
   return (
     <Card className='mx-auto mt-4 w-50'>
         <Card.Body>
+            <Image src={logo} className='logo-corner'/>
+
             <Row><h2 className='text-left'>Welcome back!</h2></Row>
+
+            <Row><p>Log in to your acccount.</p></Row>
 
             <Row>
                 <Form>

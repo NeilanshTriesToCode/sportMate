@@ -47,7 +47,7 @@ export const Signup = () => {
             event.preventDefault();
 
             // update associated state variables
-            setErrorMsg("Passwords do not match. Try again.");
+            setErrorMsg("Passwords don't match. Try again.");
             setShowAlert(true);
 
         }
@@ -59,6 +59,8 @@ export const Signup = () => {
                 <Row><h2 className='text-left'>Create an account</h2></Row>
 
                 <Row>{showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}</Row>
+
+                <Row><p>Get started by creating an account below.</p></Row>
 
                 <Row>
                     <Form noValidate validated={errorMsg} onSubmit={handleSubmit}>

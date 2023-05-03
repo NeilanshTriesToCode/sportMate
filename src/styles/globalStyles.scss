@@ -5,4 +5,12 @@
     background-color: rgb(244, 129, 53);
 }
 
+// style for logo on signup/login page (left-corner)
+.logo-corner{
+    top: 0;
+    left: 0;
+    max-height: 15%;
+    max-width: 15%;
+}
+
 @import "~bootstrap/scss/bootstrap";
