@@ -18,31 +18,28 @@ export const Login = () => {
         <Card.Body>
             <Image src={logo} className='logo-corner'/>
 
-            <Row><h2 className='text-left'>Welcome back!</h2></Row>
+            <h2 className='text-center'>Welcome back</h2>
 
-            <Row><p>Log in to your acccount.</p></Row>
+            <p className='text-center'>Log in to your acccount.</p>
+ 
+            <Form className='mx-auto w-50'>
+                <Form.Group id='login-email' className='mt-2'>
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control required type='email' placeholder='name@email.com' />
+                </Form.Group>
 
-            <Row>
-                <Form>
-                    <Form.Group id='login-email' className='mt-2'>
-                        <Form.Label>email</Form.Label>
-                        <Form.Control required type='email' placeholder='name@email.com' />
-                    </Form.Group>
+                <Form.Group id='login-password' className='mt-4'>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control required type='password' placeholder='password' />
+                </Form.Group>
 
-                    <Form.Group id='login-password' className='mt-4'>
-                        <Form.Label>password</Form.Label>
-                        <Form.Control required type='password' placeholder='password' />
-                    </Form.Group>
-
-                    <Button variant='primary' type='submit' className='mt-4'>Login</Button>
-                </Form>
-            </Row>
-
-            <Row className='mt-4'>
-                <div className='text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
-            </Row>
+                <div className='d-grid gap-2 mx-auto'>
+                    <Button type='submit' className='mt-4 btn-app-primary'>Login</Button>
+                </div>
+            </Form>
+        
+            <div className='mt-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
         </Card.Body>
-
     </Card>
   )
 }

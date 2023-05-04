@@ -1,9 +1,20 @@
 
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import "bootstrap";
+
 
 // changing button style
-.btn-primary {
-    background-color: rgb(244, 129, 53);
+.btn-app-primary {
+    @extend .btn-primary;
+    background-color: #FF851B;
+    
 }
+
+// $theme-colors: (
+//   "primary": #FF851B,
+// );
 
 // style for logo on signup/login page (left-corner)
 .logo-corner{
@@ -13,4 +24,4 @@
     max-width: 15%;
 }
 
-@import "~bootstrap/scss/bootstrap";
+//@import "~bootstrap/scss/bootstrap";
