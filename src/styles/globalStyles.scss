@@ -9,6 +9,12 @@
 .btn-app-primary {
     @extend .btn-primary;
     background-color: #FF851B;
+    border: none;
+    &:hover{
+        background-color: #f8790b;
+        border: none;
+
+    }
     
 }
 

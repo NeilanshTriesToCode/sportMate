@@ -4,7 +4,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { Card, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
 
@@ -14,32 +14,42 @@ export const Login = () => {
     const logo = require('../assets/png/logo-no-background.png');
 
   return (
-    <Card className='mx-auto mt-4 w-50'>
-        <Card.Body>
-            <Image src={logo} className='logo-corner'/>
+   <Row className='flex h-100'>
+    <Col className='w-50'>
 
-            <h2 className='text-center'>Welcome back</h2>
+    </Col>
+   
+    <Col className='mx-4 mt-4 w-50 h-100'>
+        <Card className='mx-auto h-75'>
+            <Card.Body>
+                <Image src={logo} className='logo-corner'/>
 
-            <p className='text-center'>Log in to your acccount.</p>
- 
-            <Form className='mx-auto w-50'>
-                <Form.Group id='login-email' className='mt-2'>
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control required type='email' placeholder='name@email.com' />
-                </Form.Group>
+                <h2 className='text-center'>Welcome back</h2>
 
-                <Form.Group id='login-password' className='mt-4'>
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control required type='password' placeholder='password' />
-                </Form.Group>
+                <p className='text-center'>Enter your details to log in to your acccount.</p>
 
-                <div className='d-grid gap-2 mx-auto'>
-                    <Button type='submit' className='mt-4 btn-app-primary'>Login</Button>
-                </div>
-            </Form>
+                <Form className='mx-auto w-50'>
+                    <Form.Group id='login-email' className='mt-2'>
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control required type='email' placeholder='name@email.com' />
+                    </Form.Group>
+
+                    <Form.Group id='login-password' className='mt-4'>
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control required type='password' placeholder='password' />
+                    </Form.Group>
+
+                    <div className='d-grid  mx-auto'>
+                        <Button type='submit' className='mt-4 btn-app-primary'>Login</Button>
+                    </div>
+                </Form>
         
-            <div className='mt-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
-        </Card.Body>
-    </Card>
+                <div className='mt-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
+
+                <div className="mt-4 text-left text-secondary"><p>&copy; SportMate 2023</p></div>
+            </Card.Body>
+        </Card>
+    </Col>
+   </Row>
   )
 }
