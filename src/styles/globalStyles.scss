@@ -8,10 +8,10 @@
 // changing button style
 .btn-app-primary {
     @extend .btn-primary;
-    background-color: #FF851B;
+    background-color: #E65728;
     border: none;
     &:hover{
-        background-color: #f8790b;
+        background-color: #df4511;
         border: none;
 
     }

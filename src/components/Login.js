@@ -12,15 +12,16 @@ import '../styles/globalStyles.scss';
 
 export const Login = () => {
     const logo = require('../assets/png/logo-no-background.png');
+    const logo_hexa = require('../assets/png/sportmate-high-resolution-logo-color-on-transparent-background.png');
 
   return (
-   <Row className='flex h-100'>
-    <Col className='w-50'>
-
+   <Row className='mt-4 flex h-100'>
+    <Col className='d-flex w-50  justify-content-center align-self-center'>
+    <Image src={logo_hexa} className='w-75  '/>
     </Col>
    
-    <Col className='mx-4 mt-4 w-50 h-100'>
-        <Card className='mx-auto h-75'>
+    <Col className='mx-4 w-50 h-100 '>
+        <Card className='mx-auto h-75 '>
             <Card.Body>
                 <Image src={logo} className='logo-corner'/>
 
@@ -44,9 +45,9 @@ export const Login = () => {
                     </div>
                 </Form>
         
-                <div className='mt-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
+                <div className='my-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
 
-                <div className="mt-4 text-left text-secondary"><p>&copy; SportMate 2023</p></div>
+                <div className="text-left text-secondary bottom-0 start-0"><p>&copy; SportMate 2023</p></div>
             </Card.Body>
         </Card>
     </Col>
