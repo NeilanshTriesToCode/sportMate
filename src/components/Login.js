@@ -36,14 +36,17 @@ export const Login = () => {
                             <Form.Control required type='password' placeholder='password' />
                         </Form.Group>
 
+                        <p className='mt-2 text-end fw-bold text-primary-color'>Forgot Password?</p>
+
                         <div className='d-grid  mx-auto'>
-                            <Button type='submit' className='mt-4 btn-app-primary'>Login</Button>
+                            <Button type='submit' className='mt-2 btn-app-primary'>Login</Button>
+                            <Button variant="light" className='mt-2'>Sign in with Google</Button>
                         </div>
                     </Form>
             
                     <div className='my-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
 
-                    <div className="text-left text-secondary bottom-0 start-0"><p>&copy; SportMate 2023</p></div>
+                    <div className="text-start text-secondary bottom-0 start-0"><p>&copy; SportMate 2023</p></div>
                 </Card.Body>
             </Card>
         </Col>
