@@ -4,7 +4,8 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { Card, Col, Container, Row } from 'react-bootstrap';
+import { Card, Col, Row } from 'react-bootstrap';
+import { FcGoogle } from "react-icons/fc";
 
 import { Link } from 'react-router-dom';
 
@@ -15,7 +16,7 @@ export const Login = () => {
     const logo_hexa = require('../assets/png/sportmate-high-resolution-logo-color-on-transparent-background.png');
 
   return (
-   <Row className=' d-flex border border-primary' style={{height: '100vh'}}>
+   <Row  style={{height: '100vh'}}>
         <Col className=' w-50 mh-100 '>
             <Card className='mx-auto h-75 '>
                 <Card.Body>
@@ -36,11 +37,11 @@ export const Login = () => {
                             <Form.Control required type='password' placeholder='password' />
                         </Form.Group>
 
-                        <p className='mt-2 text-end fw-bold text-primary-color'>Forgot Password?</p>
+                        <p className='mt-2 text-end fw-bold text-primary-color'><Link>Forgot Password?</Link></p>
 
-                        <div className='d-grid  mx-auto'>
-                            <Button type='submit' className='mt-2 btn-app-primary'>Login</Button>
-                            <Button variant="light" className='mt-2'>Sign in with Google</Button>
+                        <div className='mt-2 d-grid  mx-auto'>
+                            <Button type='submit' className='btn-app-primary'>Login</Button>
+                            <Button variant="outline-secondary fw-bold" className='mt-3'><FcGoogle size={24} />&nbsp;Sign in with Google</Button>
                         </div>
                     </Form>
             

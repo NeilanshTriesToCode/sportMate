@@ -4,14 +4,23 @@
 @import "~bootstrap/scss/mixins";
 @import "bootstrap";
 
+// global variables
+$primary-color: #E65728;
+
+// style for link
+a {
+    text-decoration: none;
+    color: $primary-color;
+    font-weight: 700
+}
 
 // changing button style
 .btn-app-primary {
     @extend .btn-primary;
-    background-color: #E65728;
+    background-color: $primary-color;
     border: none;
     &:hover{
-        background-color: #df4511;
+        background-color: $primary-color;
         border: none;
 
     }
@@ -32,7 +41,8 @@
 
 // class for text with primary app colour
 .text-primary-color{
-    color: #E65728;
+    color: $primary-color;
 }
+
 
 //@import "~bootstrap/scss/bootstrap";
