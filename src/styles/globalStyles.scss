@@ -11,7 +11,11 @@ $primary-color: #E65728;
 a {
     text-decoration: none;
     color: $primary-color;
-    font-weight: 700
+    font-weight: 700;
+
+    &:hover{
+        color: #6c757d; // Bootstrap's secondary colour
+    }
 }
 
 // changing button style
@@ -19,6 +23,7 @@ a {
     @extend .btn-primary;
     background-color: $primary-color;
     border: none;
+    
     &:hover{
         background-color: $primary-color;
         border: none;
