@@ -33,10 +33,10 @@ a {
 
 // style for logo on signup/login page (left-corner)
 .logo-corner{
-    top: 0;
-    left: 0;
-    max-height: 15%;
-    max-width: 15%;
+    height: 18%;
+    width: 18%;
+    min-height: 18%;
+    min-width: 18%;
 }
 
 // class for text with primary app colour

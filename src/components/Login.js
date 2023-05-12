@@ -4,7 +4,7 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { Card, Col, Row } from 'react-bootstrap';
+import { Card, Col, Container, Row } from 'react-bootstrap';
 import { FcGoogle } from "react-icons/fc";
 
 import { Link } from 'react-router-dom';
@@ -16,18 +16,17 @@ export const Login = () => {
     const logo_hexa = require('../assets/png/sportmate-high-resolution-logo-color-on-transparent-background.png');
 
   return (
-   <Row  style={{height: '100vh'}}>
-        <Col className=' w-50 mh-100 '>
-            <Card className='mx-auto h-75 '>
-                <Card.Body>
-                    <Image src={logo} className='logo-corner'/>
+    <Container fluid className='' style={{height: '100vh'}}>
+        <Row className='' style={{minHeight: '100%'}}>
+            <Col className='position-relative'>
+                <Row className='mt-3 m-1 position-absolute start-0 top-0'><Image src={logo} className='logo-corner'/></Row>
 
+                <Row className='position-absolute start-50 top-50 translate-middle'> 
                     <h2 className='text-center'>Welcome back</h2>
-
                     <p className='text-center'>Enter your details to log in to your acccount.</p>
 
-                    <Form className='mx-auto w-50'>
-                        <Form.Group id='login-email' className='mt-2'>
+                    <Form className='mx-auto'>
+                        <Form.Group id='login-email'>
                             <Form.Label>Email</Form.Label>
                             <Form.Control required type='email' placeholder='name@email.com' />
                         </Form.Group>
@@ -44,17 +43,17 @@ export const Login = () => {
                             <Button variant="outline-secondary fw-bold" className='mt-3'><FcGoogle size={24} />&nbsp;Sign in with Google</Button>
                         </div>
                     </Form>
-            
-                    <div className='my-4 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></div>
 
-                    <div className="text-start text-secondary bottom-0 start-0"><p>&copy; SportMate 2023</p></div>
-                </Card.Body>
-            </Card>
-        </Col>
+                    <p className='mt-3 text-center'>New to SportMate? <Link to="/signup">Sign up</Link></p>
+                </Row>
+                
+                <Row className="m-1 position-absolute start-0 bottom-0 text-start text-secondary"><p>&copy; SportMate 2023</p></Row>
+            </Col>
 
-        <Col className='pt-4 w-50 d-flex align-items-center justify-content-center  bg-light'>
-            <Image src={logo_hexa} className='w-75'/>
-        </Col>
-   </Row>
+            <Col className=' d-flex align-items-center justify-content-center bg-light'>
+                <Image src={logo_hexa} className='w-75'/>
+            </Col>
+        </Row>
+    </Container>
   )
 }
