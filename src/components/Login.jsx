@@ -11,15 +11,17 @@ import { Link } from 'react-router-dom';
 
 import '../styles/globalStyles.scss';
 
-export const Login = () => {
-    const logo = require('../assets/png/logo-no-background.png');
-    const logo_hexa = require('../assets/png/sportmate-high-resolution-logo-color-on-transparent-background.png');
+import logo from '../assets/logo-no-background.png';
+import hexaLogo from '../assets/sportmate-high-resolution-logo-color-on-transparent-background.png';
 
+export const Login = () => {
   return (
     <Container fluid className='' style={{height: '100vh'}}>
         <Row className='' style={{minHeight: '100%'}}>
             <Col className='position-relative'>
-                <Row className='mt-3 m-1 position-absolute start-0 top-0'><Image src={logo} className='logo-corner'/></Row>
+                <Row className='mt-3 m-1 position-absolute start-0 top-0'>
+                    <Image src={logo}  className='logo-corner'/>
+                </Row>
 
                 <Row className='position-absolute start-50 top-50 translate-middle'> 
                     <h2 className='text-center'>Welcome back</h2>
@@ -51,7 +53,7 @@ export const Login = () => {
             </Col>
 
             <Col className=' d-flex align-items-center justify-content-center bg-light'>
-                <Image src={logo_hexa} className='w-75'/>
+                <Image src={hexaLogo} className='w-75'/>
             </Col>
         </Row>
     </Container>
