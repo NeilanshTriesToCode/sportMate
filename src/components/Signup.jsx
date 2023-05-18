@@ -3,12 +3,17 @@
 import React, { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { Alert, Card, Row } from 'react-bootstrap';
+import Image from 'react-bootstrap/Image';
+import { Alert, Col, Container, Row } from 'react-bootstrap';
 
 import { Link } from 'react-router-dom';
+import { FcGoogle } from "react-icons/fc";
 import { useRef } from 'react';
 
 import '../styles/globalStyles.scss';
+
+import logo from '../assets/logo-no-background.png';
+import hexaLogo from '../assets/sportmate-high-resolution-logo-color-on-transparent-background.png';
 
 export const Signup = () => {
     // variables for input fields
@@ -54,16 +59,20 @@ export const Signup = () => {
     }
 
     return (
-        <Card className='mx-auto mt-4 w-50'>
-            <Card.Body>
-                <Row><h2 className='text-left'>Create an account</h2></Row>
+        <Container fluid className='' style={{height: '100vh'}}>
+            <Col className='position-relative'>
+                <Row className='mt-3 m-1 position-absolute start-0 top-0'>
+                    <Image src={logo}  className='logo-corner'/>
+                </Row>
 
-                <Row>{showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}</Row>
+                <Row className='position-absolute start-50 top-50 translate-middle'> 
+                    <h2 className='text-left'>Create an account</h2>
 
-                <Row><p>Get started by creating an account below.</p></Row>
+                    {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
 
-                <Row>
-                    <Form noValidate validated={errorMsg} onSubmit={handleSubmit}>
+                    <p>Get started by creating an account below.</p>
+
+                    <Form noValidate validated={errorMsg? true : false} onSubmit={handleSubmit} className='mx-auto'>
                         <Form.Group id='signup-name' className='mt-2'>
                             <Form.Label>Name</Form.Label>
                             <Form.Control required type='text' ref={usernameRef} placeholder='Leo Messi' />
@@ -89,15 +98,22 @@ export const Signup = () => {
                             <Form.Control required type='password' ref={confirmPasswordRef} placeholder='confirm password' />
                         </Form.Group>
 
-                        <Button disabled={isLoading}  variant='primary' type='submit' className='mt-4'>Sign Up</Button>
+                        <p className='mt-2 text-end fw-bold text-primary-color'><Link>Forgot Password?</Link></p>
+
+                        <div className='mt-2 d-grid  mx-auto'>
+                            <Button disabled={isLoading}  type='submit' className='btn-app-primary'>Sign Up</Button>
+                        </div>
                     </Form>
+
+                    <p className='mt-3 text-center'>Already a member? <Link to="/login">Log in</Link></p>
                 </Row>
 
-                <Row className='mt-2'>
-                    <div className='text-center'>Already a member? <Link to="/login">Log in</Link></div>
-                </Row>
-            </Card.Body>
+                <Row className="m-1 position-absolute start-0 bottom-0 text-start text-secondary"><p>&copy; SportMate 2023</p></Row>
+            </Col>
 
-        </Card>
+            <Col className=' d-flex align-items-center justify-content-center bg-light'>
+                <Image src={hexaLogo} className='w-75'/>
+            </Col>
+        </Container>
   )
 }
