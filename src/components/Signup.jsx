@@ -60,60 +60,60 @@ export const Signup = () => {
 
     return (
         <Container fluid className='' style={{height: '100vh'}}>
-            <Col className='position-relative'>
-                <Row className='mt-3 m-1 position-absolute start-0 top-0'>
-                    <Image src={logo}  className='logo-corner'/>
-                </Row>
+            <Row className='' style={{minHeight: '100%'}}>
+                <Col className='position-relative'>
+                    <Row className='mt-3 m-1 position-absolute start-0 top-0'>
+                        <Image src={logo}  className='logo-corner'/>
+                    </Row>
 
-                <Row className='position-absolute start-50 top-50 translate-middle'> 
-                    <h2 className='text-left'>Create an account</h2>
+                    <Row className='position-absolute start-50 top-50 translate-middle'> 
+                        <h2 className='text-left'>Create an account</h2>
 
-                    {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+                        {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
 
-                    <p>Get started by creating an account below.</p>
+                        <Form noValidate validated={errorMsg? true : false} onSubmit={handleSubmit} className='mx-auto'>
+                            <Form.Group id='signup-name' className='mt-2'>
+                                <Form.Label>Name</Form.Label>
+                                <Form.Control required type='text' ref={usernameRef} placeholder='Leo Messi' />
+                            </Form.Group>
 
-                    <Form noValidate validated={errorMsg? true : false} onSubmit={handleSubmit} className='mx-auto'>
-                        <Form.Group id='signup-name' className='mt-2'>
-                            <Form.Label>Name</Form.Label>
-                            <Form.Control required type='text' ref={usernameRef} placeholder='Leo Messi' />
-                        </Form.Group>
+                            <Form.Group id='signup-email' className='mt-3'>
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control required type='email' ref={emailRef} placeholder='name@email.com' />
+                            </Form.Group>
 
-                        <Form.Group id='signup-email' className='mt-4'>
-                            <Form.Label>Email</Form.Label>
-                            <Form.Control required type='email' ref={emailRef} placeholder='name@email.com' />
-                        </Form.Group>
+                            <Form.Group id='signup-phone' className='mt-3'>
+                                <Form.Label>Phone</Form.Label>
+                                <Form.Control required type='number' ref={contactNumRef} placeholder='contact number' />
+                            </Form.Group>
 
-                        <Form.Group id='signup-phone' className='mt-4'>
-                            <Form.Label>Phone</Form.Label>
-                            <Form.Control required type='number' ref={contactNumRef} placeholder='contact number' />
-                        </Form.Group>
+                            <Form.Group id='signup-password' className='mt-3'>
+                                <Form.Label>Password</Form.Label>
+                                <Form.Control required type='password' ref={passwordRef} placeholder='password' />
+                            </Form.Group>
 
-                        <Form.Group id='signup-password' className='mt-4'>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control required type='password' ref={passwordRef} placeholder='password' />
-                        </Form.Group>
+                            <Form.Group id='signup-confirm-password' className='mt-3'>
+                                <Form.Label>Confirm Password</Form.Label>
+                                <Form.Control required type='password' ref={confirmPasswordRef} placeholder='confirm password' />
+                            </Form.Group>
 
-                        <Form.Group id='signup-confirm-password' className='mt-4'>
-                            <Form.Label>Confirm Password</Form.Label>
-                            <Form.Control required type='password' ref={confirmPasswordRef} placeholder='confirm password' />
-                        </Form.Group>
+                            <div className='mt-3 d-grid  mx-auto'>
+                                <Button disabled={isLoading}  type='submit' className='btn-app-primary'>Sign Up</Button>
+                                <Button variant="outline-secondary fw-bold" className='mt-3'><FcGoogle size={24} />&nbsp;Sign in with Google</Button>
+                            </div>
+                        </Form>
 
-                        <p className='mt-2 text-end fw-bold text-primary-color'><Link>Forgot Password?</Link></p>
+                        <p className='mt-3 text-center'>Already a member? <Link to="/login">Log in</Link></p>
+                    </Row>
+                    
 
-                        <div className='mt-2 d-grid  mx-auto'>
-                            <Button disabled={isLoading}  type='submit' className='btn-app-primary'>Sign Up</Button>
-                        </div>
-                    </Form>
+                    <Row className="m-1 position-absolute start-0 bottom-0 text-start text-secondary"><p>&copy; SportMate 2023</p></Row>
+                </Col>
 
-                    <p className='mt-3 text-center'>Already a member? <Link to="/login">Log in</Link></p>
-                </Row>
-
-                <Row className="m-1 position-absolute start-0 bottom-0 text-start text-secondary"><p>&copy; SportMate 2023</p></Row>
-            </Col>
-
-            <Col className=' d-flex align-items-center justify-content-center bg-light'>
-                <Image src={hexaLogo} className='w-75'/>
-            </Col>
+                <Col className=' d-flex align-items-center justify-content-center bg-light'>
+                    <Image src={hexaLogo} className='w-75'/>
+                </Col>
+            </Row>
         </Container>
   )
 }
