@@ -33,7 +33,7 @@ export const Signup = () => {
     const [showAlert, setShowAlert] = useState(false);
 
     // function to handle Submit Button click
-    function handleSubmit(event) {
+    function handleSignUp(event) {
         // use Bootstrap Form's built-in functions to see if the fields are empty or not
         const form = event.currentTarget;
 
@@ -42,7 +42,7 @@ export const Signup = () => {
             event.preventDefault();
 
             // update associated state variables
-            setErrorMsg("One or more fields are empty.");
+            setErrorMsg("One or more fields are empty/invalid.");
             setShowAlert(true);
 
         }
@@ -71,7 +71,7 @@ export const Signup = () => {
 
                         {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
 
-                        <Form noValidate validated={errorMsg? true : false} onSubmit={handleSubmit} className='mx-auto'>
+                        <Form noValidate validated={errorMsg? true : false} onSubmit={handleSignUp} className='mx-auto'>
                             <Form.Group id='signup-name' className='mt-2'>
                                 <Form.Label>Name</Form.Label>
                                 <Form.Control required type='text' ref={usernameRef} placeholder='Leo Messi' />
