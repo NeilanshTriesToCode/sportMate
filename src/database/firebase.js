@@ -13,5 +13,13 @@ const app = firebase.initializeApp({
 // export authentication instance
 export const auth = app.auth();
 
+// export database instance
+// to interact with the database
+export const database = app.database();
+
+// export storage instance
+// to access storage
+export const storage = app.storage();
+
 // export general firebase app
 export default app;
