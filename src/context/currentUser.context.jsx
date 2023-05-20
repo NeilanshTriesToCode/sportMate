@@ -2,8 +2,8 @@
 // responsible for info of the current user
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import firebase from 'firebase/app';
-import {auth, database} from '../database/firebase';
+
+import { auth, database } from '../database/firebase';
 
 // create Context object
 const CurrentUserContext = createContext();
