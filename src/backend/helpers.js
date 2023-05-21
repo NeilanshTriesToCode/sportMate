@@ -11,9 +11,9 @@ import { auth, database } from './firebase';
 export async function signUpUser (username, email, password, contactNumber) {
     let errorMsg = '';
 
-   await createUserWithEmailAndPassword(auth, email, password).then(() => {
-        // custom function to add user details to firestore
-        addDoc(collection(database, 'users'), {
+   await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        // add user details to firestore
+        setDoc(doc(database, 'users', userCredential.user.uid), {
             username: username,
             email: email,
             contact: contactNumber
@@ -27,7 +27,7 @@ export async function signUpUser (username, email, password, contactNumber) {
 
         // Request successful
         return Promise.resolve();
-        
+
     }).catch((error) => {
         // catching different types of errors
         switch(error.code){
