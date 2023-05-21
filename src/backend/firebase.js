@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import {getStorage} from "firebase/storage";
-import { getDatabase } from "firebase/database";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
 const app = initializeApp({
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -13,16 +13,13 @@ const app = initializeApp({
 });
 
 // authentication instance
-const auth = getAuth(app);
+export const auth = getAuth(app);
 
 // database instance to interact with the database
-const database = getDatabase(app);
+export const database = getFirestore(app);
 
 // storage instance to access storage
-const storage = getStorage(app);
-
-// export the instances
-export {auth, database, storage};
+export const storage = getStorage(app);
 
 // export general firebase app
 export default app;

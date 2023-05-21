@@ -3,7 +3,7 @@
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-import { auth, database } from '../database/firebase';
+import { auth, database } from '../backend/firebase';
 
 // create Context object
 const CurrentUserContext = createContext();
@@ -18,18 +18,23 @@ export const CurrentUserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
 
     // state variable for isLoading (to indicate whether the current user data has loaded or not)
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     // useEffect to change the state of "currentUser" when the consuming Component mounts
     useEffect(() => {
-        setCurrentUser({
-            name: 'Leo Messi',
-            email: 'leo@goatmail.com'
-        });
+        setIsLoading(true);
 
+       const unsubAuth = auth.onAuthStateChanged(user => {
+        setCurrentUser(user);
         setIsLoading(false);
+       })
 
 
+       // cleanup function
+       // executes when the Component unmounts
+       return () => {
+        unsubAuth();
+       }
 
     }, []);
 

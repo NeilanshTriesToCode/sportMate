@@ -12,6 +12,9 @@ import { useRef } from 'react';
 
 import '../styles/globalStyles.scss';
 
+import { useCurrentUser } from '../context/currentUser.context';
+import { signUpUser } from '../backend/helpers';
+
 import logo from '../assets/logo-no-background.png';
 import hexaLogo from '../assets/sportmate-high-resolution-logo-color-on-transparent-background.png';
 
@@ -32,30 +35,41 @@ export const Signup = () => {
     // state variable to show/hide alert
     const [showAlert, setShowAlert] = useState(false);
 
+    // get current user from context
+    const { currentUser } = useCurrentUser();
+
     // function to handle Submit Button click
-    function handleSignUp(event) {
+    async function handleSignUp(event) {
         // use Bootstrap Form's built-in functions to see if the fields are empty or not
         const form = event.currentTarget;
+        event.preventDefault();
+
 
         // if fields are not entered
         if(!form.checkValidity()){
-            event.preventDefault();
+            //event.preventDefault();
 
             // update associated state variables
             setErrorMsg("One or more fields are empty/invalid.");
             setShowAlert(true);
 
+            return;
         }
 
         // check if password and confirm-password match
         if(passwordRef.current.value !== confirmPasswordRef.current.value){
-            event.preventDefault();
+            //event.preventDefault();
 
             // update associated state variables
             setErrorMsg("Passwords don't match. Try again.");
             setShowAlert(true);
 
+            return;
         }
+
+        // if the fields are valid, sign up the user w/ email and password
+        await signUpUser(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, contactNumRef.current.value);
+            
     }
 
     return (
@@ -70,6 +84,8 @@ export const Signup = () => {
                         <h2 className='text-left'>Create an account</h2>
 
                         {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+
+                        <p>{currentUser ? currentUser.email : ''}</p> 
 
                         <Form noValidate validated={errorMsg? true : false} onSubmit={handleSignUp} className='mx-auto'>
                             <Form.Group id='signup-name' className='mt-2'>
