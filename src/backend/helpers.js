@@ -11,10 +11,23 @@ import { auth, database } from './firebase';
 export async function signUpUser (username, email, password, contactNumber) {
     let errorMsg = '';
 
-   createUserWithEmailAndPassword(auth, email, password).then(() => {
+   await createUserWithEmailAndPassword(auth, email, password).then(() => {
         // custom function to add user details to firestore
-        errorMsg = addUser(username, email, contactNumber);
-        return errorMsg;
+        addDoc(collection(database, 'users'), {
+            username: username,
+            email: email,
+            contact: contactNumber
+        }).catch(e => {
+            console.log(e);
+            errorMsg = 'error occurred';
+    
+            // return Promise with error message
+            return Promise.reject(errorMsg);
+        });
+
+        // Request successful
+        return Promise.resolve();
+        
     }).catch((error) => {
         // catching different types of errors
         switch(error.code){
@@ -37,9 +50,9 @@ export async function signUpUser (username, email, password, contactNumber) {
                 errorMsg = 'An unknown error occurred. Please try again.'
             }
         }
-
-        //console.log(errorMsg);
-        return errorMsg;
+        // return Promise with error message
+        // console.log(errorMsg);
+        return Promise.reject(errorMsg);
     });
 
     
@@ -49,15 +62,18 @@ export async function signUpUser (username, email, password, contactNumber) {
 export async function addUser(username, email, contactNumber){
     let errorMsg = '';
 
-    addDoc(collection(database, 'users'), {
+    // add user details to the "users" Collection on firebase
+    await addDoc(collection(database, 'users'), {
         username: username,
         email: email,
         contact: contactNumber
     }).catch(e => {
         console.log(e);
         errorMsg = 'error occurred';
+
+        // return Promise with error message
+        return Promise.reject(errorMsg);
     });
 
-    // return error message (empty if no error)
-    return errorMsg;
+   
 }

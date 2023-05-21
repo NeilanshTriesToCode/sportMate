@@ -32,11 +32,11 @@ export const Signup = () => {
     // state variable to display error message
     const [errorMsg, setErrorMsg] = useState('');
 
+    // state variable for success message
+    const [successMsg, setSuccessMsg] = useState('');
+
     // state variable to show/hide alert
     const [showAlert, setShowAlert] = useState(false);
-
-    // get current user from context
-    const { currentUser } = useCurrentUser();
 
     // function to handle Submit Button click
     async function handleSignUp(event) {
@@ -68,8 +68,18 @@ export const Signup = () => {
         }
 
         // if the fields are valid, sign up the user w/ email and password
-        await signUpUser(usernameRef.current.value, emailRef.current.value, passwordRef.current.value, contactNumRef.current.value);
-            
+        signUpUser(usernameRef.current.value, emailRef.current.value,
+            passwordRef.current.value, contactNumRef.current.value).then(() => {
+                setSuccessMsg('Account created successfully.');
+
+            }).catch((msg) => {
+                console.log(msg)
+                setErrorMsg(msg);
+                setShowAlert(true);
+            });
+
+       
+          
     }
 
     return (
@@ -83,9 +93,9 @@ export const Signup = () => {
                     <Row className='position-absolute start-50 top-50 translate-middle'> 
                         <h2 className='text-left'>Create an account</h2>
 
-                        {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+                        { showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
 
-                        <p>{currentUser ? currentUser.email : ''}</p> 
+                        {successMsg && <Alert variant='success' dismissible onClose={() => setShowAlert(false)}>{successMsg}</Alert>}
 
                         <Form noValidate validated={errorMsg? true : false} onSubmit={handleSignUp} className='mx-auto'>
                             <Form.Group id='signup-name' className='mt-2'>
