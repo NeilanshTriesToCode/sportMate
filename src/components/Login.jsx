@@ -13,6 +13,7 @@ import '../styles/globalStyles.scss';
 
 import logo from '../assets/logo-no-background.png';
 import hexaLogo from '../assets/sportmate-high-resolution-logo-color-on-transparent-background.png';
+import { logInUser } from '../backend/helpers';
 
 export const Login = () => {
     // variables for input fields
@@ -24,23 +25,48 @@ export const Login = () => {
 
     // state variable to display error message
     const [errorMsg, setErrorMsg] = useState('');
+
+    // state variable for success message
+    const [successMsg, setSuccessMsg] = useState('');
  
     // state variable to show/hide alert
     const [showAlert, setShowAlert] = useState(false);
 
     // function to login user
-    const handleLogin = (event) => {
+    async function handleLogin(event){
+        // disable "Login" Button
+        setIsLoading(true);
+        
         // use Bootstrap Form's built-in functions to see if the fields are empty or not
         const form = event.currentTarget;
+        event.preventDefault();
 
         // if fields are not entered
         if(!form.checkValidity()){
-            event.preventDefault();
- 
             // update associated state variables
             setErrorMsg("One or more fields are empty/invalid.");
             setShowAlert(true);
+
+            // enable "Login" Button
+            setIsLoading(false);
+
+            return;
         }
+
+        // if all fields are valid, login user
+        await logInUser(emailRef.current.value, passwordRef.current.value)
+            .then(() => {
+                setSuccessMsg('Login successful');
+            })
+            .catch((error) => {
+                // console.log(error)
+                setErrorMsg(error);
+                setShowAlert(true);
+
+            });
+
+        // enable "Login" Button
+        setIsLoading(false);
     }
 
     return (
@@ -55,7 +81,9 @@ export const Login = () => {
                         <h2 className='text-center'>Welcome back</h2>
                         <p className='text-center'>Enter your details to log in to your acccount.</p>
 
-                        {showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+                        {errorMsg && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+
+                        {successMsg && <Alert variant='success' dismissible onClose={() => setShowAlert(false)}>{successMsg}</Alert>}
 
                         <Form noValidate validated={errorMsg ? true : false} onSubmit={handleLogin} className='mx-auto'>
                             <Form.Group id='login-email'>
@@ -71,7 +99,7 @@ export const Login = () => {
                             <p className='mt-2 text-end fw-bold text-primary-color'><Link>Forgot Password?</Link></p>
 
                             <div className='mt-2 d-grid  mx-auto'>
-                                <Button type='submit' className='btn-app-primary'>Login</Button>
+                                <Button disabled={isLoading} type='submit' className='btn-app-primary'>Login</Button>
                                 <Button variant="outline-secondary fw-bold" className='mt-3'><FcGoogle size={24} />&nbsp;Sign in with Google</Button>
                             </div>
                         </Form>

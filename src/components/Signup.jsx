@@ -40,6 +40,9 @@ export const Signup = () => {
 
     // function to handle Submit Button click
     async function handleSignUp(event) {
+        // disable "Sign up" Button
+        isLoading(true);
+
         // use Bootstrap Form's built-in functions to see if the fields are empty or not
         const form = event.currentTarget;
         event.preventDefault();
@@ -53,6 +56,9 @@ export const Signup = () => {
             setErrorMsg("One or more fields are empty/invalid.");
             setShowAlert(true);
 
+            // enable "Sign up" Button
+            isLoading(false);
+
             return;
         }
 
@@ -64,22 +70,25 @@ export const Signup = () => {
             setErrorMsg("Passwords don't match. Try again.");
             setShowAlert(true);
 
+            // enable "Sign up" Button
+            isLoading(false);
+
             return;
         }
 
         // if the fields are valid, sign up the user w/ email and password
-        signUpUser(usernameRef.current.value, emailRef.current.value,
+        await signUpUser(usernameRef.current.value, emailRef.current.value,
             passwordRef.current.value, contactNumRef.current.value).then(() => {
                 setSuccessMsg('Account created successfully.');
 
-            }).catch((msg) => {
-                console.log(msg)
-                setErrorMsg(msg);
+            }).catch((error) => {
+                // console.log(error)
+                setErrorMsg(error);
                 setShowAlert(true);
             });
 
-       
-          
+        // enable "Sign up" Button
+        isLoading(false);
     }
 
     return (
@@ -93,7 +102,7 @@ export const Signup = () => {
                     <Row className='position-absolute start-50 top-50 translate-middle'> 
                         <h2 className='text-left'>Create an account</h2>
 
-                        { showAlert && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
+                        {errorMsg && <Alert variant='danger' dismissible onClose={() => setShowAlert(false)}>{errorMsg}</Alert>}
 
                         {successMsg && <Alert variant='success' dismissible onClose={() => setShowAlert(false)}>{successMsg}</Alert>}
 
