@@ -12,7 +12,7 @@
 */
 
 import React from 'react';
-import { Route, redirect } from 'react-router-dom';
+import { Navigate, Route, redirect } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 
 import { useCurrentUser } from '../context/currentUser.context';
@@ -33,7 +33,8 @@ export const PublicRoute = ({children}) => {
      If they're signed in, direct them to Homepage by default.
     */
    if(currentUser && !isLoading){
-        return redirect('/');  // redirect to homepage
+        console.log(currentUser);
+        return <Navigate to="/" />;  // redirect to homepage
    }
 
     // this condition implies user if signed-IN (currentUser && isLoading = false)
