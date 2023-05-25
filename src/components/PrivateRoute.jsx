@@ -12,7 +12,7 @@
 */
 
 import React from 'react';
-import { Route, redirect, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 
 import { useCurrentUser } from '../context/currentUser.context';
@@ -31,9 +31,9 @@ export const PrivateRoute = ({children}) => {
     /* in other words, if the user's logged-in or not
        since currentProfile gets a value when the user logs in.
     */
-   // if not, then redirect to Login page
+   // if not, then navigate to Login page
    if(!currentUser && !isLoading){
-        return <Navigate to="/login" />;  // redirect to homepage
+        return <Navigate to="/login" />;  // navigate to the Login page
 }
 
    // this condition implies user if signed-IN (currentUser && isLoading = false)

@@ -12,7 +12,7 @@
 */
 
 import React from 'react';
-import { Navigate, Route, redirect } from 'react-router-dom';
+import { Navigate} from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 
 import { useCurrentUser } from '../context/currentUser.context';
@@ -34,7 +34,7 @@ export const PublicRoute = ({children}) => {
     */
    if(currentUser && !isLoading){
         console.log(currentUser);
-        return <Navigate to="/" />;  // redirect to homepage
+        return <Navigate to="/" />;  // navigate to homepage
    }
 
     // this condition implies user if signed-IN (currentUser && isLoading = false)
