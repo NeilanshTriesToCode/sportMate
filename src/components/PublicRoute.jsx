@@ -1,4 +1,4 @@
-// PublicRouter Component built around react-router.
+// PublicRoute Component built around react-router.
 /*
  Works as a simple router, with additional functionalities:
  - Gets currentUser and isLoading from useCurrentUser Context.
@@ -17,7 +17,7 @@ import { Spinner } from 'react-bootstrap';
 
 import { useCurrentUser } from '../context/currentUser.context';
 
-export const PublicRoute = ({children, ...routeProps}) => {
+export const PublicRoute = ({children}) => {
     // extract currentUser and isLoading from useCurrentUser
     const { currentUser, isLoading } = useCurrentUser();
 
@@ -39,5 +39,5 @@ export const PublicRoute = ({children, ...routeProps}) => {
     // this condition implies user if signed-IN (currentUser && isLoading = false)
    // otherwise, user is signed OUT, so render the children (wrapped by this Component) 
    // In this case, children is ONLY one of Signup, Login or ForgotPassword
-   return <Route {...routeProps}>{children}</Route>;
+   return children;
 }

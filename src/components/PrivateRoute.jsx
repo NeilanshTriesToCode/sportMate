@@ -17,7 +17,7 @@ import { Spinner } from 'react-bootstrap';
 
 import { useCurrentUser } from '../context/currentUser.context';
 
-export const PrivateRoute = ({children, ...routeProps}) => {
+export const PrivateRoute = ({children}) => {
     // extract currentUser and isLoading from useCurrentUser
     const { currentUser, isLoading } = useCurrentUser();
 
@@ -39,5 +39,5 @@ export const PrivateRoute = ({children, ...routeProps}) => {
    // this condition implies user if signed-IN (currentUser && isLoading = false)
    // otherwise, render the children (wrapped by this Component)
    // ONLY happens when the user is signed-in
-   return <Route {...routeProps}>{children}</Route>;
+   return children;
 }
