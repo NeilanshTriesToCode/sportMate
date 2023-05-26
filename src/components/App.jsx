@@ -1,11 +1,11 @@
-import { Signup } from "./Signup";
-import { Login } from "./Login";
-import {Homepage} from "./Homepage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { CurrentUserProvider } from "../context/currentUser.context";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { Homepage } from "./Homepage";
 
 function App() {
   return (

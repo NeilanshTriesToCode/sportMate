@@ -1,7 +1,7 @@
 // file containing firebase-related methods
 
 // import firebase-related stuff
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, setDoc, addDoc, collection } from 'firebase/firestore';
 
 import { auth, database } from './firebase';
@@ -98,4 +98,15 @@ export async function logInUser(email, password){
             // console.log(errorMsg);
             return Promise.reject(errorMsg);
         });
+}
+
+// function to sign-out user
+export async function signOutUser(){
+    // sign-out user using firebase's sign-out method
+    signOut(auth).then(() => {
+        console.log('user signed out successfully');
+    }).catch((error) => {
+        console.log(error.code);
+    });
+    
 }
