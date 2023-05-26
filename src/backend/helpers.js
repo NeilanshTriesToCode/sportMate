@@ -76,7 +76,7 @@ export async function logInUser(email, password){
             // catching different types of errors
             switch(error.code){
                 case 'auth/user-not-found' : {
-                    errorMsg = 'Account doesn\'t exist. Please create an account.';
+                    errorMsg = 'Account doesn\'t exist with this email. Please create an account.';
                     break;
                 }
 
