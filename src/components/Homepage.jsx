@@ -10,6 +10,6 @@ import '../styles/globalStyles.scss';
 
 export const Homepage = () => {
   return (
-    <Button type='submit' className='btn-app-primary'>Sign Out</Button>
+    <Button type='submit' className='btn-app-primary' onClick={signOutUser}>Sign Out</Button>
   );
 }

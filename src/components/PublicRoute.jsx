@@ -33,6 +33,7 @@ export const PublicRoute = ({children}) => {
      If they're signed in, direct them to Homepage by default.
     */
    if(currentUser && !isLoading){
+        console.log(currentUser);
         return <Navigate to="/" />;  // navigate to homepage
    }
 

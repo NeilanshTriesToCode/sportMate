@@ -104,7 +104,7 @@ export async function logInUser(email, password){
 export async function signOutUser(){
     // sign-out user using firebase's sign-out method
     signOut(auth).then(() => {
-        console.log('user signed out successfully');
+        // console.log('user signed out successfully');
     }).catch((error) => {
         console.log(error.code);
     });
